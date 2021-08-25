@@ -6,6 +6,8 @@
 [![Discord](https://img.shields.io/discord/325459248047980545?label=discord&logo=discord)](https://discord.gg/NZtfKky)
 [![Support me on Patreon](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Ddumptruckman%26type%3Dpatrons&style=flat)](https://patreon.com/dumptruckman)
 
+Hi!
+
 About
 ========
 [Multiverse](https://dev.bukkit.org/projects/multiverse-core) was created at the dawn of Bukkit multiworld support. It has since then grown into a **complete world management solution!** Multiverse provides the easiest to use world management solution for your Minecraft server, big or small, and with great addons like [Portals](https://dev.bukkit.org/projects/multiverse-portals) and [NetherPortals](https://dev.bukkit.org/projects/multiverse-netherportals/), what's not to love!
