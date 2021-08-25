@@ -12,20 +12,8 @@ resources:
     icon: github
     type: git
     source:
-      paths:
-        - src/**
-        - ci/scripts/**
-        - ci/tasks/**
       branch: main
       uri: https://github.com/dumptruckman/multiverse-core-testing
-
-  - name: artifact
-    type: maven-resource
-    source:
-      url: http://localhost:8081/nexus/content/groups/public/
-      artifact: com.dumptruckman:multiverse-core:jar
-      username: admin
-      password: admin123
 
 groups:
   - name: deployments
@@ -59,7 +47,3 @@ jobs:
       #        passed: [unit-tests]
       - task: maven-package
         file: main/ci/tasks/maven-package.yml
-      - put: artifact
-        params:
-          file: jar/Multiverse-Core-*.jar
-          pom_file: main/pom.xml
