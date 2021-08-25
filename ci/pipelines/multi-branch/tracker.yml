@@ -7,7 +7,7 @@ resource_types:
       repository: aoldershaw/git-branches-resource
 
 resources:
-  - name: branch
+  - name: dev-branches
     type: git-branches
     source:
       uri: https://github.com/dumptruckman/multiverse-core-testing
@@ -22,7 +22,7 @@ jobs:
   - name: set-dev-branch-pipelines
     plan:
       - in_parallel:
-          - get: branch
+          - get: dev-branches
             trigger: true
           - get: main
       - load_var: branches
