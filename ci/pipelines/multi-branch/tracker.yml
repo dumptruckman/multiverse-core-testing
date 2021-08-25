@@ -19,6 +19,14 @@ resources:
       uri: https://github.com/dumptruckman/multiverse-core-testing
 
 jobs:
+  - name: set-main-pipeline
+    build_logs_to_retain: 50
+    plan:
+      - get: main
+        trigger: true
+      - set_pipeline: multiverse-deploy
+        file: main/ci/pipelines/pipeline.yml
+
   - name: set-dev-branch-pipelines
     plan:
       - in_parallel:
@@ -30,7 +38,7 @@ jobs:
       - across:
           - var: branch
             values: ((.:branches))
-        set_pipeline: dev
+        set_pipeline: multiverse-branch-testing
         file: main/ci/pipelines/multi-branch/template.yml
         instance_vars: { dev_branch: ((.:branch.groups.dev_branch)) }
         vars: { branch: ((.:branch.name)) }

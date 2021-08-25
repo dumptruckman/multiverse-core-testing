@@ -5,4 +5,4 @@ if [ "$#" -ne 1 ]; then
     exit -1
 fi
 
-fly -t "$1" sp -c ./ci/pipelines/pipeline.yml -p multiverse-core
+fly -t "$1" sp -c ./ci/pipelines/multi-branch/tracker.yml -p multiverse-core
