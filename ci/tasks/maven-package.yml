@@ -33,4 +33,4 @@ run:
   args:
     - -c
     - |
-      mvn -B -f main/pom.xml package
+      mvn -B -f main/pom.xml package -DoutputDirectory=jar
