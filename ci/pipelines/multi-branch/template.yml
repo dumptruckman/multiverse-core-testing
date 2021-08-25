@@ -1,0 +1,25 @@
+resources:
+  - name: branch
+    icon: github
+    type: git
+    source:
+      uri: https://github.com/dumptruckman/multiverse-core-testing
+      branch: ((branch))
+
+  - name: main
+    icon: github
+    type: git
+    source:
+      branch: main
+      uri: https://github.com/dumptruckman/multiverse-core-testing
+
+jobs:
+  - name: test
+    plan:
+      - in_parallel:
+          - get: branch
+            trigger: true
+          - get: main
+      - task: tests
+        file: main/ci/tasks/unit-tests.yml
+        input_mapping: { repo: branch }

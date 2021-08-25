@@ -1,0 +1,36 @@
+# https://concourse-ci.org/multi-branch-workflows.html
+
+resource_types:
+  - name: git-branches
+    type: registry-image
+    source:
+      repository: aoldershaw/git-branches-resource
+
+resources:
+  - name: branch
+    type: git-branches
+    source:
+      uri: https://github.com/dumptruckman/multiverse-core-testing
+      branch_regex: '^(?P<dev_branch>((?!main).)*)$'
+
+  - name: main
+    type: git
+    source:
+      uri: https://github.com/dumptruckman/multiverse-core-testing
+
+jobs:
+  - name: set-dev-branch-pipelines
+    plan:
+      - in_parallel:
+          - get: branch
+            trigger: true
+          - get: main
+      - load_var: branches
+        file: dev-branches/branches.json
+      - across:
+          - var: branch
+            values: ((.:branches))
+        set_pipeline: dev
+        file: ci/pipelines/multi-branch/template.yml
+        instance_vars: { dev_branch: ((.:branch.groups.dev_branch)) }
+        vars: { branch: ((.:branch.name)) }
